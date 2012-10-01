@@ -1,0 +1,45 @@
+Pulling from FB
+Gender
+[ Male, Female]
+Education
+[ Elementary School, Secondary School, O Level (High School), Polytechnic, A Level (Junior College), University, Masters/Phd
+Occupation
+[ Student, Employee[Field : Business, Education, IT, Sports, Music …] , Free Lancer, etc]
+Friends
+[ 0-50, >50]
+Relationship status
+[ In relationship, Single, Married]
+Religion
+[ Halal, non-halal]
+ 
+Year of Birth
+[ 1-12, 12-19,19-25, 26-40, >40 years old]
+ 
+Question
+Any data missing above will be a question
+ 
+Dropdown with above options
+What is your current annual salary?
+ 
+Dropdown: 0-3000, 3000- 20000, 20000 - 80000, >80000
+ 
+Questions for training recommendation :
+20 data points for each person
+Which day did you have the meal at?
+Dropdown options: Monday Wednesday Friday Saturday and sunday
+ 
+What time did you have the meal at? (Round off to hour)
+ 
+Dropdown option: 24 hours just in hours
+ 
+What type of food places did you have the meal at?
+(Options mapped to –all food places-- at Hungrygowhere)
+ 
+What cuisines did you have for meal?
+(Options mapped to –all cuisines -- at Hungrygowhere)
+ 
+How much did you spend? 
+(Options mapped to –all prices-- at Hungrygowhere)
+ 
+What will you describe the type of outing?
+(Options mapped to – recommended for -- at Hungrygowhere)
