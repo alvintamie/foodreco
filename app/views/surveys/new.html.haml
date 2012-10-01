@@ -1,8 +1,8 @@
 = simple_form_for @survey do |f|
-  = f.input :gender,              :collection => Survey::GENDER
-  = f.input :friends_count_range, :collection => Survey::FRIENDS_COUNT
-  = f.input :relationship_status, :collection => Survey::RELATIONSHIP_STATUS
-  = f.input :religion,            :collection => Survey::RELIGION
-  = f.input :age_range,           :collection => Survey::AGE
-  = f.input :annual_salary_range, :collection => Survey::ANNUAL_SALARY
+  = f.input :gender,              :collection => Survey::GENDER               if @survey.gender.blank?
+  = f.input :friends_count_range, :collection => Survey::FRIENDS_COUNT        if @survey.friends_count_range.blank?
+  = f.input :relationship_status, :collection => Survey::RELATIONSHIP_STATUS  if @survey.relationship_status.blank?
+  = f.input :religion,            :collection => Survey::RELIGION             if @survey.religion.blank?
+  = f.input :age_range,           :collection => Survey::AGE                  if @survey.age_range.blank?
+  = f.input :annual_salary_range, :collection => Survey::ANNUAL_SALARY        if @survey.annual_salary_range.blank?
   = f.button :submit 

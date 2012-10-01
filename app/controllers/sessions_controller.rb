@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-
+ skip_before_filter :current_user
  def create
     user = User.from_omniauth(env["omniauth.auth"])
     user.create_survey_from_omniauth(env["omniauth.auth"])

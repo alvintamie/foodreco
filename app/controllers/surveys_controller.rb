@@ -4,16 +4,7 @@ class SurveysController < ApplicationController
   end
 
   def new
-    @survey = current_user.build_survey
-  end
-
-  def create
-    @survey = current_user.build_survey params[:survey]
-    if @survey.save
-      redirect_to root_path
-    else
-      render :new
-    end
+    @survey = current_user.survey
   end
 
   def edit
@@ -21,6 +12,11 @@ class SurveysController < ApplicationController
   end
 
   def update
-    
+    @survey = current_user.survey
+    if @survey.update_attributes params[:survey]
+      redirect_to root_path
+    else
+      render :new
+    end    
   end
 end

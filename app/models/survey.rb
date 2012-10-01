@@ -32,6 +32,8 @@ class Survey < ActiveRecord::Base
 
   validates :religion,
             :presence => true,
+            :allow_nil => false,
+            :allow_blank => false,
             :on => :update
 
   validates :age_range,
