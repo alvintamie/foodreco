@@ -33,6 +33,8 @@ group :assets do
 
 end
 
+gem "foreman"
+gem "unicorn"
 
 gem 'jquery-rails'
 
