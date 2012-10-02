@@ -3,8 +3,11 @@ class CreateSurveys < ActiveRecord::Migration
     create_table :surveys do |t|
       t.integer :user_id
 
-      t.hstore  :education
-      t.hstore  :occupation
+      t.hstore  :education_from_facebook
+      t.hstore  :occupation_from_facebook
+
+      t.string  :education
+      t.string  :occupation
 
       t.integer :age_from_facebook
       t.string  :age_range
@@ -20,7 +23,7 @@ class CreateSurveys < ActiveRecord::Migration
 
       t.string  :name
 
-      t.integer :annual_salary_range
+      t.string  :annual_salary_range
 
       t.string  :relationship_status_from_facebook
       t.string  :relationship_status

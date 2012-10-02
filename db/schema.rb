@@ -15,8 +15,10 @@ ActiveRecord::Schema.define(:version => 20121001070942) do
 
   create_table "surveys", :force => true do |t|
     t.integer  "user_id"
-    t.hstore   "education"
-    t.hstore   "occupation"
+    t.hstore   "education_from_facebook"
+    t.hstore   "occupation_from_facebook"
+    t.string   "education"
+    t.string   "occupation"
     t.integer  "age_from_facebook"
     t.string   "age_range"
     t.string   "religion_from_facebook"
@@ -26,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20121001070942) do
     t.string   "gender_from_facebook"
     t.string   "gender"
     t.string   "name"
-    t.integer  "annual_salary_range"
+    t.string   "annual_salary_range"
     t.string   "relationship_status_from_facebook"
     t.string   "relationship_status"
     t.datetime "created_at",                        :null => false
