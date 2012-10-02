@@ -2,6 +2,7 @@ class SurveysController < ApplicationController
 
   def new
     @survey = current_user.survey
+    redirect_to survey_meals_path @survey if @survey.valid?
   end
 
 
