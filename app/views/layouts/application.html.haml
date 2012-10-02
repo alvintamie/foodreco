@@ -6,12 +6,72 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    #user_nav
-      - if current_user
-        Signed in as
-        = succeed "!" do
-          %strong= current_user.name
-        = link_to "Sign out", logout_path, id: "sign_out"
-      - else
-        = link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"
-    = yield
+
+    .navbar
+      .navbar-inner
+        .container-fluid
+          %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          =link_to "FoodReco", root_path, :class => :brand
+          .nav-collapse.collapse
+          -if @current_user
+            %ul.nav
+              %li
+                %p 
+                  Signed in as
+                  %strong= @current_user.name
+              %li.divider-vertical
+    
+              -if @meal.present?
+                %li{:class => (current_page?(survey_meals_path) ? :active : "") }
+                  = link_to survey_meals_path(@current_user.survey), :confirm => "You sure you want to cancel?" do
+                    %i.icon-home
+                    Home (and cancel)
+              -else
+                %li{:class => (current_page?(survey_meals_path) ? :active : "") }
+                  = link_to survey_meals_path(@current_user.survey) do
+                    %i.icon-home
+                    Home
+                %li.divider-vertical
+                %li{:class => (current_page?(new_survey_meal_path) ? :active : "") }
+                  -if @current_user.survey && @current_user.survey.valid? 
+                    = link_to new_survey_meal_path(@current_user.survey) do
+                      %i.icon-file
+                      Add new Meals
+              %li.divider-vertical
+            %ul.nav.pull-right
+              %li
+                = link_to "Log out", logout_path
+              %li.divider-vertical
+            -else 
+            %ul.nav.pull-right
+              %li
+                = link_to "Sign in with Facebook", "/auth/facebook"#, id: "sign_in"
+              %li.divider-vertical
+    
+          / /.nav-collapse
+        / /.container-fluid
+      / /.navbar-inner
+    / /.navbar
+
+
+    .container
+      -unless @current_user
+        .hero-unit
+          %h1 Hey fella!
+          %p Sign it with Facebook so we can get started :-)
+          = link_to "Sign in with Facebook", "/auth/facebook", :class => "btn btn-primary btn-large"
+
+      .row-fluid
+        = yield
+
+      %hr
+        %footer
+          %p © Company 2012
+    
+    
+
+
+

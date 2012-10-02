@@ -1,6 +1,6 @@
 if Rails.env.production?
-app_id = "531269973553002"
-app_secret = "99695eea14b86e51da7800ac3377fe51"
+app_id = "371889012885215"
+app_secret = "c1ef8ff9946f44c35e550540471edfac"
 else
 app_id = "531269973553002"
 app_secret = "99695eea14b86e51da7800ac3377fe51"

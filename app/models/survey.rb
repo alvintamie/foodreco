@@ -4,10 +4,12 @@ class Survey < ActiveRecord::Base
 
   attr_protected :id
 
-  serialize :education,   ActiveRecord::Coders::Hstore
-  serialize :occupation,  ActiveRecord::Coders::Hstore
+  #serialize :education_from_facebook,   ActiveRecord::Coders::Hstore
+  #serialize :occupation_from_facebook,  ActiveRecord::Coders::Hstore
 
   belongs_to  :user
+
+  Survey::EDUCATION                   = ["Elementary School", "Secondary School", "O Level (High School)", "Polytechnic", "A Level (Junior College)", "University", "Masters/Phd"]
 
   Survey::GENDER                      = ["male", "female"]
   Survey::FRIENDS_COUNT               = ["0-50", "50 or more"]
@@ -17,32 +19,44 @@ class Survey < ActiveRecord::Base
   Survey::ANNUAL_SALARY               = ["0-3000", "3000-20000", "80000 or more"]  
 
   before_validation :set_name!
+  has_many :meals, :dependent => :destroy
+
+  validates :education,
+            :presence => true,
+            :on => :update,
+            :inclusion => { :in => Survey::EDUCATION }
 
   validates :gender,
             :presence => true,
-            :on => :update
+            :on => :update,
+            :inclusion => { :in => Survey::GENDER }
 
   validates :friends_count_range,
             :presence => true,
-            :on => :update
+            :on => :update,
+            :inclusion => { :in => Survey::FRIENDS_COUNT }
 
   validates :relationship_status,
             :presence => true,
-            :on => :update
+            :on => :update,
+            :inclusion => { :in => Survey::RELATIONSHIP_STATUS }
 
   validates :religion,
             :presence => true,
             :allow_nil => false,
             :allow_blank => false,
-            :on => :update
+            :on => :update,
+            :inclusion => { :in => Survey::RELIGION }
 
   validates :age_range,
             :presence => true,
-            :on => :update
+            :on => :update,
+            :inclusion => { :in => Survey::AGE }
 
   validates :annual_salary_range,
             :presence => true,
-            :on => :update
+            :on => :update,
+            :inclusion => { :in => Survey::ANNUAL_SALARY }
 
   validates :name,
             :presence => true,
@@ -60,6 +74,7 @@ class Survey < ActiveRecord::Base
     self.relationship_status_from_facebook  = auth.extra.raw_info.relationship_status
     self.religion_from_facebook             = auth.extra.raw_info.religion
     self.birthdate_to_age                   = auth.extra.raw_info.birthday
+    #self.education_from_facebook            = {:education => auth.extra.raw_info.education, :work => auth.extra.raw_info.work}
     self.save
   end
 
