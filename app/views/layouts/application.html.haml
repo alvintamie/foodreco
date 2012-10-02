@@ -12,6 +12,10 @@
         = succeed "!" do
           %strong= current_user.name
         = link_to "Sign out", logout_path, id: "sign_out"
+        - if @meal.present?
+          = link_to "List my meals", survey_meals_path(current_user.survey), :confirm => "You sure you want to cancel?"
+        - else
+          = link_to "Add Meals", new_survey_meal_path(current_user.survey) if current_user.survey && current_user.survey.valid?
       - else
         = link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in"
     = yield

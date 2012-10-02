@@ -1,4 +1,4 @@
-= simple_form_for @survey do |f|
+= simple_form_for @survey.reload do |f|
   = f.input :education,           :collection => Survey::EDUCATION            if @survey.education.blank?
   = f.input :gender,              :collection => Survey::GENDER               if @survey.gender.blank?
   = f.input :friends_count_range, :collection => Survey::FRIENDS_COUNT        if @survey.friends_count_range.blank?
