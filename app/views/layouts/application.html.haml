@@ -14,29 +14,30 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand{:href => "#", :name => "top"} FoodReco
+          =link_to "FoodReco", root_path, :class => :brand
           .nav-collapse.collapse
-          -if current_user
+          -if @current_user
             %ul.nav
               %li
                 %p 
                   Signed in as
-                  %strong= current_user.name
+                  %strong= @current_user.name
+              %li.divider-vertical
     
               -if @meal.present?
-                %li
-                  = link_to survey_meals_path(current_user.survey), :confirm => "You sure you want to cancel?" do
+                %li{:class => (current_page?(survey_meals_path) ? :active : "") }
+                  = link_to survey_meals_path(@current_user.survey), :confirm => "You sure you want to cancel?" do
                     %i.icon-home
                     Home (and cancel)
               -else
-                %li
-                  = link_to survey_meals_path(current_user.survey) do
+                %li{:class => (current_page?(survey_meals_path) ? :active : "") }
+                  = link_to survey_meals_path(@current_user.survey) do
                     %i.icon-home
                     Home
                 %li.divider-vertical
-                %li.active
-                  -if current_user.survey && current_user.survey.valid? 
-                    = link_to new_survey_meal_path(current_user.survey) do
+                %li{:class => (current_page?(new_survey_meal_path) ? :active : "") }
+                  -if @current_user.survey && @current_user.survey.valid? 
+                    = link_to new_survey_meal_path(@current_user.survey) do
                       %i.icon-file
                       Add new Meals
               %li.divider-vertical
@@ -57,7 +58,7 @@
 
 
     .container
-      -unless current_user
+      -unless @current_user
         .hero-unit
           %h1 Hey fella!
           %p Sign it with Facebook so we can get started :-)
