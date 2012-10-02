@@ -69,16 +69,19 @@ class Survey < ActiveRecord::Base
   #           :uniqueness => true
 
   def create_survey_from_omniauth(auth)
-    self.gender_from_facebook               = auth.extra.raw_info.gender
-    self.friends_count_from_facebook        = nil
-    self.relationship_status_from_facebook  = auth.extra.raw_info.relationship_status
-    self.religion_from_facebook             = auth.extra.raw_info.religion
-    self.birthdate_to_age                   = auth.extra.raw_info.birthday
-    #self.education_from_facebook            = {:education => auth.extra.raw_info.education, :work => auth.extra.raw_info.work}
+    if auth && auth.extra && auth.extra.raw_info.present?
+      self.gender_from_facebook               = auth.extra.raw_info.gender
+      self.friends_count_from_facebook        = nil
+      self.relationship_status_from_facebook  = auth.extra.raw_info.relationship_status
+      self.religion_from_facebook             = auth.extra.raw_info.religion
+      self.birthdate_to_age                   = auth.extra.raw_info.birthday
+      #self.education_from_facebook            = {:education => auth.extra.raw_info.education, :work => auth.extra.raw_info.work}
+    end
     self.save
   end
 
   def gender_from_facebook=(unknown_gender)
+    return if unknown_gender.blank?
     Survey::GENDER.each do |gender_matcher|
       self.gender = unknown_gender if gender_matcher == unknown_gender
     end
@@ -86,6 +89,7 @@ class Survey < ActiveRecord::Base
   end
 
   def friends_count_from_facebook=(friends_count)
+    return if friends_count.blank?
     range = Survey::FRIENDS_COUNT.match_numeric_range_with_value friends_count
     if range.present?
       self.friends_count_range = range
@@ -94,6 +98,7 @@ class Survey < ActiveRecord::Base
   end
 
   def relationship_status_from_facebook=(unknown_status)
+    return if unknown_status.blank?
     Survey::RELATIONSHIP_STATUS.each do |status_matcher|
       self.relationship_status = unknown_status if status_matcher == unknown_status
     end
@@ -101,6 +106,7 @@ class Survey < ActiveRecord::Base
   end
 
   def religion_from_facebook=(unknown_religion)
+    return if unknown_religion.blank?
     if unknown_religion.match(/(Islam)|(Muslim)/).present?
       food_preference = "Halal" 
     else
@@ -112,12 +118,14 @@ class Survey < ActiveRecord::Base
 
 
   def birthdate_to_age=(birthdate)
+    return if birthdate.blank?
     birth_year =  birthdate.split("/").last.to_i
     age = Time.now.year - birth_year
     self.age_from_facebook = age
   end
 
   def age_from_facebook=(age)
+    return if age.blank?
     write_attribute(:age_from_facebook, age)
     range = Survey::AGE.match_numeric_range_with_value(age)
     self.age_range = range
