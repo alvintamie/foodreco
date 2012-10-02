@@ -1,0 +1,16 @@
+= simple_form_for [@survey, @meal] do |f|
+  = f.input :day,         :collection => Meal::DAYS
+  = f.input :hour,        :collection => Meal::HOURS
+  = f.input :place,       :collection => Meal::PLACES
+  = f.input :cuisine,     :collection => Meal::CUISINES
+  = f.input :price,       :collection => Meal::PRICES
+  = f.input :recommended, :collection => Meal::RECOMMENDED
+
+  = f.button :submit 
+
+
+
+    
+     
+   
+

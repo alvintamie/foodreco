@@ -2,7 +2,9 @@ FoodrecoServer::Application.routes.draw do
   
   resource :landing,  :only  => [:show]
   resource :session,  :only  => [:create, :destroy]
-  resources :surveys, :only   => [:show, :new, :create, :edit, :update]
+  resources :surveys, :only  => [:new, :update] do
+    resources :meals, :except => [:show]
+  end
 
   match 'auth/:provider/callback', to: 'sessions#create'
   match 'auth/failure', to: redirect('/')

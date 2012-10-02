@@ -19,6 +19,7 @@ class Survey < ActiveRecord::Base
   Survey::ANNUAL_SALARY               = ["0-3000", "3000-20000", "80000 or more"]  
 
   before_validation :set_name!
+  has_many :meals
 
   validates :education,
             :presence => true,
