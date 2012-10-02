@@ -30,12 +30,12 @@
                     %i.icon-home
                     Home (and cancel)
               -else
-                %li{:class => (current_page?(survey_meals_path) ? :active : "") }
+                %li{:class => (current_page?(survey_meals_path(@current_user.survey)) ? :active : "") }
                   = link_to survey_meals_path(@current_user.survey) do
                     %i.icon-home
                     Home
                 %li.divider-vertical
-                %li{:class => (current_page?(new_survey_meal_path) ? :active : "") }
+                %li{:class => (current_page?(new_survey_meal_path(@current_user.survey)) ? :active : "") }
                   -if @current_user.survey && @current_user.survey.valid? 
                     = link_to new_survey_meal_path(@current_user.survey) do
                       %i.icon-file
