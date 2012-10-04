@@ -9,14 +9,14 @@ class Survey < ActiveRecord::Base
 
   belongs_to  :user
 
-  Survey::EDUCATION                   = ["Elementary School", "Secondary School", "O Level (High School)", "Polytechnic", "A Level (Junior College)", "University", "Masters/Phd"]
+  Survey::EDUCATION                   = ["Elementary School", "Secondary School", "O Level (High School)", "Poytechnic", "A Level (Junior College)", "University", "Masters/Phd"].sort 
 
-  Survey::GENDER                      = ["male", "female"]
+  Survey::GENDER                      = ["male", "female"].sort
   Survey::FRIENDS_COUNT               = ["0-50", "50 or more"]
-  Survey::RELATIONSHIP_STATUS         = ["Single", "In a relationship", "Married"]
-  Survey::RELIGION                    = ["Halal", "Non-Halal"]
+  Survey::RELATIONSHIP_STATUS         = ["Single", "In a relationship", "Married"].sort
+  Survey::RELIGION                    = ["Halal", "Non-Halal"].sort
   Survey::AGE                         = ["5-12", "13-19", "20-25", "26-40", "40 or older"]
-  Survey::ANNUAL_SALARY               = ["0-3000", "3000-20000", "80000 or more"]  
+  Survey::ANNUAL_SALARY               = ["0-3000", "3000-20000", "20000-80000", "80000 or more"]  
 
   before_validation :set_name!
   has_many :meals, :dependent => :destroy
