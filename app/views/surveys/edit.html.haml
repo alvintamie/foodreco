@@ -1,0 +1,9 @@
+= simple_form_for @survey do |f|
+  = f.input :education,           :collection => Survey::EDUCATION          
+  = f.input :gender,              :collection => Survey::GENDER             
+  = f.input :friends_count_range, :collection => Survey::FRIENDS_COUNT      
+  = f.input :relationship_status, :collection => Survey::RELATIONSHIP_STATUS
+  = f.input :religion,            :collection => Survey::RELIGION           
+  = f.input :age_range,           :collection => Survey::AGE                
+  = f.input :annual_salary_range, :collection => Survey::ANNUAL_SALARY      
+  = f.button :submit 
