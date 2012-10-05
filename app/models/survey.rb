@@ -26,6 +26,10 @@ class Survey < ActiveRecord::Base
             :on => :update,
             :inclusion => { :in => Survey::EDUCATION }
 
+  validates :occupation,
+            :presence => true,
+            :on => :update
+
   validates :gender,
             :presence => true,
             :on => :update,

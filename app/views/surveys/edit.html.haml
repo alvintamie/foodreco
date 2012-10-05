@@ -1,5 +1,6 @@
 = simple_form_for @survey do |f|
   = f.input :education,           :collection => Survey::EDUCATION          
+  = f.input :occupation
   = f.input :gender,              :collection => Survey::GENDER             
   = f.input :friends_count_range, :collection => Survey::FRIENDS_COUNT      
   = f.input :relationship_status, :collection => Survey::RELATIONSHIP_STATUS
