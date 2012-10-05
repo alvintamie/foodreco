@@ -24,9 +24,10 @@ class Meal < ActiveRecord::Base
             :presence => true,
             :allow_nil => false,
             :allow_blank => false,
-            :inclusion => { :in => Meal::HOURS },
-            :uniqueness => { :scope => [:user_id, :day],
-                            :message => "You've already picked %{value} on that day" }
+            :inclusion => { :in => Meal::HOURS }
+            # ,
+            # :uniqueness => { :scope => [:user_id, :day],
+            #                 :message => "You've already picked %{value} on that day" }
 
 
   validates :place,
