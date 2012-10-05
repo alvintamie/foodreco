@@ -1,5 +1,6 @@
 = simple_form_for @survey.reload do |f|
   = f.input :education,           :collection => Survey::EDUCATION            if @survey.education.blank?
+  = f.input :occupation,                                                      if @survey.occupation.blank?
   = f.input :gender,              :collection => Survey::GENDER               if @survey.gender.blank?
   = f.input :friends_count_range, :collection => Survey::FRIENDS_COUNT        if @survey.friends_count_range.blank?
   = f.input :relationship_status, :collection => Survey::RELATIONSHIP_STATUS  if @survey.relationship_status.blank?
