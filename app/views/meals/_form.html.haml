@@ -2,7 +2,7 @@
   = f.input :day,         :collection => Meal::DAYS
   = f.input :hour,        :collection => Meal::HOURS
   = f.input :place,       :collection => Meal::PLACES
-  = f.input :cuisine,     :collection => Meal::CUISINES
+  = f.input :cuisine,     :collection => Meal::CUISINES, :as => :grouped_select, :group_method => :last
   = f.input :price,       :collection => Meal::PRICES
   = f.input :recommended, :collection => Meal::RECOMMENDED
 
