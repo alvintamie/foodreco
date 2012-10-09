@@ -3,7 +3,7 @@ FoodrecoServer::Application.routes.draw do
   resource :landing,  :only  => [:show]
   resource :session,  :only  => [:create, :destroy]
   resources :surveys, :only  => [:new, :update, :edit] do
-    resources :meals, :except => [:show]
+  resources :meals, :except => [:show]
   end
 
   match 'auth/:provider/callback', to: 'sessions#create'
